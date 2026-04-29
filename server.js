@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));
 
 const EMAIL_USER = process.env.EMAIL_USER || "ammarjanjuha92@gmail.com";
-const EMAIL_PASS = process.env.EMAIL_PASS || "rcqbtqcpnedwffqn";
+const EMAIL_PASS = process.env.EMAIL_PASS;
 
 if (!EMAIL_USER || !EMAIL_PASS) {
   console.error("ERROR: Email credentials are not configured.");
@@ -126,4 +126,3 @@ app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
-

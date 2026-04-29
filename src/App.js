@@ -1,4 +1,4 @@
-// import logo from './logo.svg'; (unused)
+// Portfolio for Ammar Janjuha
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar } from "./components/NavBar";

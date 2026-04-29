@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ code: 500, message: 'Server email credentials are not configured.' });
   }
 
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: EMAIL_USER,

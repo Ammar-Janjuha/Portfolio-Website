@@ -26,22 +26,26 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    const API_URL = process.env.REACT_APP_API_URL || "";
-    let response = await fetch(`${API_URL}/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-  if (result.code === 200) { // eslint-disable-next-line eqeqeq
-      setStatus({ success: true, message: 'Message sent successfully'});
-      new Audio('/Voicy_Back.mp3').play().catch(() => {});
-    } else {
-      setStatus({ success: false, message: result.message || 'Something went wrong, please try again later.'});
+    try {
+      let response = await fetch('/api/contact', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(formDetails),
+      });
+      setButtonText("Send");
+      let result = await response.json();
+      setFormDetails(formInitialDetails);
+      if (result.code === 200) {
+        setStatus({ success: true, message: 'Message sent successfully'});
+        new Audio('/Voicy_Back.mp3').play().catch(() => {});
+      } else {
+        setStatus({ success: false, message: result.message || 'Something went wrong, please try again later.'});
+      }
+    } catch (error) {
+      setButtonText("Send");
+      setStatus({ success: false, message: 'Failed to connect to server. Please try again later.' });
     }
   };
 

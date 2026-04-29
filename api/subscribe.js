@@ -1,6 +1,10 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
+  console.log('Subscribe API called:', JSON.stringify(req.body));
+  console.log('EMAIL_USER present:', !!process.env.EMAIL_USER);
+  console.log('EMAIL_PASS present:', !!process.env.EMAIL_PASS);
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ code: 405, message: 'Method not allowed' });
   }
@@ -15,10 +19,10 @@ export default async function handler(req, res) {
   const EMAIL_PASS = process.env.EMAIL_PASS;
 
   if (!EMAIL_USER || !EMAIL_PASS) {
-    return res.status(500).json({ code: 500, message: 'Server email credentials are not configured.' });
+    return res.status(500).json({ code: 500, message: 'Server email credentials are not configured. Check Vercel env vars.' });
   }
 
-  const transporter = nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: EMAIL_USER,
@@ -39,7 +43,7 @@ export default async function handler(req, res) {
     await transporter.sendMail(mail);
     res.status(200).json({ code: 200, status: 'Subscribed Successfully' });
   } catch (error) {
-    console.error(error);
+    console.error('Send mail error:', error);
     res.status(500).json({ code: 500, message: 'Failed to process subscription. Please try again later.' });
   }
 }
