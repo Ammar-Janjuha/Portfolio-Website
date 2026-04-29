@@ -1,9 +1,9 @@
 {
-  "short_name": "Ammar Janjuha Portfolio",
-  "name": "Ammar Janjuha - Portfolio Website",
+  "short_name": "Portfolio",
+  "name": "Portfolio Website",
   "icons": [
     {
-      "src": "energy.gif",
+      "src": "portfolio.gif",
       "type": "image/gif",
       "sizes": "512x512",
       "purpose": "any maskable"

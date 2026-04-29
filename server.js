@@ -1,4 +1,5 @@
 // DEPRECATED for Vercel deployment - API moved to api/contact.js and api/subscribe.js&#10;// For local dev only: uncomment and node server.js (needs .env)&#10;// require('dotenv').config();
+require('dotenv').config();
 
 const express = require("express");
 const router = express.Router();
@@ -10,13 +11,15 @@ const path = require("path");
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000",
-  "https://your-username.vercel.app",
+"http://localhost:3000",
+  "http://localhost:3001",
+  "https://personal-portfolio-janjuhas-projects.vercel.app"
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allows local origins and any Vercel deployment/preview URLs
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -54,7 +57,7 @@ contactEmail.verify((error) => {
   }
 });
 
-router.post("/contact", (req, res) => {
+router.post("/api/contact", (req, res) => {
   if (!EMAIL_USER || !EMAIL_PASS) {
     return res.status(500).json({ code: 500, message: "Server email credentials are not configured." });
   }
@@ -89,7 +92,7 @@ router.post("/contact", (req, res) => {
   });
 });
 
-router.post("/subscribe", (req, res) => {
+router.post("/api/subscribe", (req, res) => {
   if (!EMAIL_USER || !EMAIL_PASS) {
     return res.status(500).json({ code: 500, message: "Server email credentials are not configured." });
   }
