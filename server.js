@@ -1,4 +1,4 @@
-require('dotenv').config();
+// DEPRECATED for Vercel deployment - API moved to api/contact.js and api/subscribe.js&#10;// For local dev only: uncomment and node server.js (needs .env)&#10;// require('dotenv').config();
 
 const express = require("express");
 const router = express.Router();
