@@ -37,7 +37,7 @@ export const Contact = () => {
     setButtonText("Send");
     let result = await response.json();
     setFormDetails(formInitialDetails);
-    if (result.code == 200) {
+  if (result.code === 200) { // eslint-disable-next-line eqeqeq
       setStatus({ success: true, message: 'Message sent successfully'});
       new Audio('/Voicy_Back.mp3').play().catch(() => {});
     } else {
