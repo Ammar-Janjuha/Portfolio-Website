@@ -16,7 +16,8 @@ export const Newsletter = () => {
       setStatus('sending');
       setMessage('');
       try {
-        let response = await fetch("/subscribe", {
+        const API_URL = process.env.REACT_APP_API_URL || "";
+        let response = await fetch(`${API_URL}/subscribe`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset=utf-8",
