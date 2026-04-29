@@ -34,7 +34,7 @@ export const NavBar = () => {
       <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
         <Container>
           <Navbar.Brand href="/">
-            <span className="navbar-brand-text">Ammar Janjuha</span>
+            <img src="/energy.gif" alt="Logo" style={{ width: '45px' }} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <span className="navbar-toggler-icon"></span>

@@ -9,7 +9,7 @@ export const Footer = () => {
         <Row className="align-items-center">
           <MailchimpForm />
           <Col size={12} sm={6}>
-            <h3 className="footer-logo-text">Ammar Janjuha</h3>
+            <img src="/energy.gif" alt="Logo" style={{ width: '60px' }} />
           </Col>
           <Col size={12} sm={6} className="text-center text-sm-end">
             <div className="social-icon">
